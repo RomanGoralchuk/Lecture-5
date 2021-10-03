@@ -21,7 +21,7 @@ public class FilterIP extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 
         List <String> blackListIP = new ArrayList<>();
-        blackListIP.add("192.168.100.28"); // real test
+     /*   blackListIP.add("192.168.100.28"); // real test*/
         blackListIP.add("192.168.100.30");
         blackListIP.add("192.168.100.45");
         blackListIP.add("192.168.100.7"); // real test
