@@ -20,7 +20,7 @@
 
     <servlet>
         <servlet-name>ServletTwo</servlet-name>
-        <servlet-class>by.itacademy.javaenterprise.goralchuk.Servlet2</servlet-class>
+        <servlet-class>by.itacademy.javaenterprise.goralchuk.web.servlets.Servlet2</servlet-class>
     </servlet>
 
     <servlet-mapping>

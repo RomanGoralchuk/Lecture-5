@@ -1,14 +1,22 @@
 package by.itacademy.javaenterprise.goralchuk;
 
+import by.itacademy.javaenterprise.goralchuk.web.servlets.Servlet2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static javax.script.ScriptEngine.FILENAME;
+
 public class MACAddress {
 
-    public String getMacClient(String ip) {
+    static final Logger logger = LoggerFactory.getLogger(MACAddress.class);
+
+    public static String getMacClient(String ip) {
 
         String OS = System.getProperty("os.name").toLowerCase();
 
@@ -18,13 +26,13 @@ public class MACAddress {
             // Windows
             macpt = Pattern
                     .compile("[0-9a-f]+-[0-9a-f]+-[0-9a-f]+-[0-9a-f]+-[0-9a-f]+-[0-9a-f]+");
-            String[] a = { "arp", "-a", ip };
+            String[] a = {"arp", "-a", ip};
             cmd = a;
         } else {
             // Mac OS X, Linux
             macpt = Pattern
                     .compile("[0-9a-f]+:[0-9a-f]+:[0-9a-f]+:[0-9a-f]+:[0-9a-f]+:[0-9a-f]+");
-            String[] a = { "arp", ip };
+            String[] a = {"arp", ip};
             cmd = a;
         }
 
@@ -47,16 +55,9 @@ public class MACAddress {
                 line = reader.readLine();
             }
 
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        } catch (IOException | InterruptedException e) {
+            logger.error("Failed to read file {}.", FILENAME, e);
         }
-
         return "";
     }
-
-
-
-
-    }
+}
