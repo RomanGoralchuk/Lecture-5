@@ -3,4 +3,12 @@
 2 - Tasks:  - IP filter
             - Content filter
             - MAC filter
-3 - How to get router logs?...
+
+3 New:  - add logger
+        - cleaned code
+
+4 Questions: - How to output logger results to the console
+             - Logger in methods doGet and doPost
+             - Study Victor's example
+
+
