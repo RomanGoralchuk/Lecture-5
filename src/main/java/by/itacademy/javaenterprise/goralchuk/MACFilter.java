@@ -1,4 +1,4 @@
-package by.it.academy;
+package by.itacademy.javaenterprise.goralchuk;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -24,7 +24,7 @@ public class MACFilter extends HttpFilter {
         List<String> terroristListMAC = new ArrayList<>();
         terroristListMAC.add("00-1a-73-03-00-00");
         terroristListMAC.add("00-1a-73-03-e5-00");
-        terroristListMAC.add("00-1a-73-03-e5-7b"); // real test
+        terroristListMAC.add("00-1a-73-03-e5-7b");
 
         String ipAddress = req.getHeader("X-FORWARDED-FOR");
         if (ipAddress == null) {
@@ -33,16 +33,10 @@ public class MACFilter extends HttpFilter {
         MACAddress macAddressClient = new MACAddress();
         String clientMAC =  macAddressClient.getMacClient(ipAddress);
 
-        // First check the list and find matches
         for (String s : terroristListMAC) {
             if (clientMAC.equals(s)) {
                 foundTerroristMAC = s;
-/*              Desktop desktop = Desktop.getDesktop();
-                String message = "mailto:jane@example.com?subject=hello&body=How%20are%20you%3F";
-                URI uri = URI.create(message);
-                desktop.mail(uri);*/
 
-                // Call the police!))
                 if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
                     try {
                         Desktop.getDesktop().browse(new URI("https://www1.nyc.gov/site/nypd/index.page"));
@@ -53,7 +47,6 @@ public class MACFilter extends HttpFilter {
             }
         }
 
-        // Block matches
         if (clientMAC.equals(foundTerroristMAC)) {
             res.getWriter().write("Sorry! Server problems. Wait for the police ");
         } else {

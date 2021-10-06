@@ -1,4 +1,4 @@
-package by.it.academy;
+package by.itacademy.javaenterprise.goralchuk;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -21,24 +21,21 @@ public class FilterIP extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain) throws IOException, ServletException {
 
         List <String> blackListIP = new ArrayList<>();
-     /*   blackListIP.add("192.168.100.28"); // real test*/
         blackListIP.add("192.168.100.30");
         blackListIP.add("192.168.100.45");
-        blackListIP.add("192.168.100.7"); // real test
+        blackListIP.add("192.168.100.7");
 
         String ipAddress = req.getHeader("X-FORWARDED-FOR");
         if (ipAddress == null) {
             ipAddress = req.getRemoteAddr();
         }
 
-        // First check the list and find matches
         for (String s : blackListIP) {
             if (ipAddress.equals(s)) {
                 foundBlackIP = s;
             }
         }
 
-        // Block matches
         if (ipAddress.equals(foundBlackIP)) {
             res.getWriter().write("Your IP is blocked!");
         } else {

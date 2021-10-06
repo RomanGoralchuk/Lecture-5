@@ -1,6 +1,5 @@
-package by.it.academy;
+package by.itacademy.javaenterprise.goralchuk;
 
-import javax.servlet.annotation.WebFilter;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,7 +10,6 @@ public class MACAddress {
 
     public String getMacClient(String ip) {
 
-        // Find OS and set command according to OS
         String OS = System.getProperty("os.name").toLowerCase();
 
         String[] cmd;
@@ -31,19 +29,15 @@ public class MACAddress {
         }
 
         try {
-            // Run command
             Process p = Runtime.getRuntime().exec(cmd);
             p.waitFor();
-            // read output with BufferedReader
             BufferedReader reader = new BufferedReader(new InputStreamReader(
                     p.getInputStream()));
             String line = reader.readLine();
 
-            // Loop trough lines
             while (line != null) {
                 Matcher m = macpt.matcher(line);
 
-                // when Matcher finds a Line then return it as result
                 if (m.find()) {
                     System.out.println("Found");
                     System.out.println("MAC: " + m.group(0));
@@ -59,7 +53,6 @@ public class MACAddress {
             e.printStackTrace();
         }
 
-        // Return empty string if no MAC is found
         return "";
     }
 

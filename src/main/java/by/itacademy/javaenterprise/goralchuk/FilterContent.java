@@ -1,4 +1,4 @@
-package by.it.academy;
+package by.itacademy.javaenterprise.goralchuk;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;

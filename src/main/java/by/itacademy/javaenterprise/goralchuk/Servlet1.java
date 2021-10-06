@@ -1,4 +1,4 @@
-package by.it.academy;
+package by.itacademy.javaenterprise.goralchuk;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +15,6 @@ public class Servlet1 extends HttpServlet {
 
     private static long countOfRequest = 0L;
 
-    //////////////////////////////////////////////////////////////////////////////////////////
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -40,7 +39,6 @@ public class Servlet1 extends HttpServlet {
         out.println("LocalHost: " + NetworkInterface.getByInetAddress(InetAddress.getLocalHost()));
         out.println("PathInfo: " + req.getPathInfo());
         out.println("Cookies: " + Arrays.toString(req.getCookies()));
-
 
     }
 
