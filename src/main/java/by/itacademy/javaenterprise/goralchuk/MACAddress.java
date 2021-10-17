@@ -1,6 +1,5 @@
 package by.itacademy.javaenterprise.goralchuk;
 
-import by.itacademy.javaenterprise.goralchuk.web.servlets.Servlet2;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -14,7 +13,7 @@ import static javax.script.ScriptEngine.FILENAME;
 
 public class MACAddress {
 
-    static final Logger logger = LoggerFactory.getLogger(MACAddress.class);
+    private static final Logger logger = LoggerFactory.getLogger(MACAddress.class);
 
     public static String getMacClient(String ip) {
 

@@ -1,10 +1,6 @@
 package by.itacademy.javaenterprise.goralchuk.web.servlets;
 
-import by.itacademy.javaenterprise.goralchuk.MACAddress;
-import by.itacademy.javaenterprise.goralchuk.web.filters.MACFilter;
 import by.itacademy.javaenterprise.goralchuk.web.util.IPUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,8 +18,6 @@ import static by.itacademy.javaenterprise.goralchuk.MACAddress.getMacClient;
 
 @WebServlet(name = "ServletOne", urlPatterns = {"/one"})
 public class Servlet1 extends HttpServlet {
-
-    static final Logger logger = LoggerFactory.getLogger(Servlet1.class);
 
     AtomicLong requestCount = new AtomicLong(0);
 

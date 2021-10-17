@@ -1,6 +1,5 @@
 package by.itacademy.javaenterprise.goralchuk.web.filters;
 
-import by.itacademy.javaenterprise.goralchuk.MACAddress;
 import by.itacademy.javaenterprise.goralchuk.web.util.IPUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,19 +17,19 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static by.itacademy.javaenterprise.goralchuk.MACAddress.getMacClient;
 import static javax.script.ScriptEngine.FILENAME;
 
-@WebFilter(urlPatterns = "/one")
+@WebFilter(urlPatterns = "/*")
 public class MACFilter extends HttpFilter {
+    private static final Logger logger = LoggerFactory.getLogger(MACFilter.class);
 
-    static final Logger logger = LoggerFactory.getLogger(MACFilter.class);
-
-    final List<String> terroristListMAC = new ArrayList<>();
+    private final List<String> blackListMAC = new ArrayList<>();
 
     {
-        terroristListMAC.add("00-1a-73-03-00-00");
-        terroristListMAC.add("00-1a-73-03-e5-00");
-        terroristListMAC.add("00-1a-73-03-e5-7b");
+        blackListMAC.add("00-1a-73-03-00-00");
+        blackListMAC.add("00-1a-73-03-e5-00");
+        blackListMAC.add("00-1a-73-03-e5-7b");
     }
 
     @Override
@@ -40,10 +39,9 @@ public class MACFilter extends HttpFilter {
 
         String ipAddress = IPUtils.getIp(req);
 
-        MACAddress macAddressClient = new MACAddress();
-        String clientMAC = macAddressClient.getMacClient(ipAddress);
+        String clientMAC = getMacClient(ipAddress);
 
-        if (terroristListMAC.contains(clientMAC)) {
+        if (blackListMAC.contains(clientMAC)) {
             res.getWriter().write("Sorry! Server problems. Wait for the police ");
             logger.info("Forbidden MAC address found");
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {

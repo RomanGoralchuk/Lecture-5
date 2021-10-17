@@ -1,6 +1,5 @@
 package by.itacademy.javaenterprise.goralchuk.web.filters;
 
-import by.itacademy.javaenterprise.goralchuk.web.servlets.Servlet1;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,6 +23,7 @@ public class FilterContent extends HttpFilter {
         String contentType = req.getHeader("content-type");
         if (ALLOWED_CONTENT_TYPE.equals(contentType)) {
             chain.doFilter(req, res);
+            logger.debug("Equals check " + ALLOWED_CONTENT_TYPE + " = " + contentType);
         } else {
             res.getWriter().write("Text plain only!");
         }
